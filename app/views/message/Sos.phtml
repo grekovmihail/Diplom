@@ -1,0 +1,37 @@
+<?php
+/**
+ * @var \Phalcon\Mvc\View\Engine\Php $this
+ */
+?>
+
+<div class="row">
+    <nav>
+        <ul class="pager">
+            <li class="previous"><?php echo $this->tag->linkTo(array("message", "Go Back")) ?></li>
+        </ul>
+    </nav>
+</div>
+
+<div class="page-header">
+    <h1>
+        Помощь в пути
+    </h1>
+</div>
+
+<?php echo $this->getContent(); ?>
+
+<?php
+    echo $this->tag->form(
+        array(
+            "message/create",
+            "autocomplete" => "off",
+            "class" => "form-horizontal"
+        )
+    );
+?>
+
+
+
+
+
+<?php echo $this->tag->endForm(); ?>

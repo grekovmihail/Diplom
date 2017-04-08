@@ -1,0 +1,75 @@
+<?php
+/**
+ * @var \Phalcon\Mvc\View\Engine\Php $this
+ */
+?>
+
+<div class="row">
+    <nav>
+        <ul class="pager">
+            <li class="previous"><?php echo $this->tag->linkTo(array("users", "Go Back")) ?></li>
+        </ul>
+    </nav>
+</div>
+
+<div class="page-header">
+    <h1>
+        Create users
+    </h1>
+</div>
+
+<?php echo $this->getContent(); ?>
+
+<?php
+    echo $this->tag->form(
+        array(
+            "users/create",
+            "autocomplete" => "off",
+            "class" => "form-horizontal"
+        )
+    );
+?>
+
+<div class="form-group">
+    <label for="fieldIdusers" class="col-sm-2 control-label">IdUsers</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(array("idUsers", "type" => "number", "class" => "form-control", "id" => "fieldIdusers")) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldUsersfio" class="col-sm-2 control-label">UsersFIO</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(array("UsersFIO", "size" => 30, "class" => "form-control", "id" => "fieldUsersfio")) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldUserstype" class="col-sm-2 control-label">UsersType</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(array("UsersType", "size" => 30, "class" => "form-control", "id" => "fieldUserstype")) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldUserslogin" class="col-sm-2 control-label">UsersLogin</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(array("UsersLogin", "size" => 30, "class" => "form-control", "id" => "fieldUserslogin")) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldUserspassword" class="col-sm-2 control-label">UsersPassword</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(array("UsersPassword", "size" => 30, "class" => "form-control", "id" => "fieldUserspassword")) ?>
+    </div>
+</div>
+
+
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <?php echo $this->tag->submitButton(array("Save", "class" => "btn btn-default")) ?>
+    </div>
+</div>
+
+<?php echo $this->tag->endForm(); ?>

@@ -1,0 +1,70 @@
+<?php
+/**
+ * @var \Phalcon\Mvc\View\Engine\Php $this
+ */
+?>
+
+<div class="page-header">
+    <h1>
+        Search message
+    </h1>
+    <p>
+        <?php echo $this->tag->linkTo(array("message/new", "Create message")) ?>
+    </p>
+</div>
+
+<?php echo $this->getContent() ?>
+
+<?php
+    echo $this->tag->form(
+        array(
+            "message/search",
+            "autocomplete" => "off",
+            "class" => "form-horizontal"
+        )
+    );
+?>
+
+<div class="form-group">
+    <label for="fieldIdmessage" class="col-sm-2 control-label">IdMessage</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(array("idMessage", "type" => "number", "class" => "form-control", "id" => "fieldIdmessage")) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldText" class="col-sm-2 control-label">Text</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(array("Text", "size" => 30, "class" => "form-control", "id" => "fieldText")) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldMessagetime" class="col-sm-2 control-label">MessageTime</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(array("MessageTime", "size" => 30, "class" => "form-control", "id" => "fieldMessagetime")) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldTraceIdtrace" class="col-sm-2 control-label">Trace Of IdTrace</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(array("Trace_idTrace", "type" => "number", "class" => "form-control", "id" => "fieldTraceIdtrace")) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldTraceAutoKo" class="col-sm-2 control-label">Trace Of Auto Of KO</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(array("Trace_Auto_KO", "type" => "number", "class" => "form-control", "id" => "fieldTraceAutoKo")) ?>
+    </div>
+</div>
+
+
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <?php echo $this->tag->submitButton(array("Search", "class" => "btn btn-default")) ?>
+    </div>
+</div>
+
+<?php echo $this->tag->endForm(); ?>

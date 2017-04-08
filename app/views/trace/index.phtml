@@ -1,0 +1,114 @@
+<?php
+/**
+ * @var \Phalcon\Mvc\View\Engine\Php $this
+ */
+echo Phalcon\Tag::javascriptInclude("http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js", false);
+
+
+?>
+
+<style>
+
+    button {
+        width: 50%;
+    }
+
+    a {
+
+        color: ghostwhite;
+
+    }
+
+    A:hover {
+        text-decoration: none; /* Добавляем подчеркивание при наведении курсора на ссылку */
+        color: papayawhip; /* Ссылка красного цвета */
+    }
+
+    p {
+        text-align: center;
+
+    }
+
+
+</style>
+
+
+<script>
+
+
+    function geo() {
+
+        navigator.geolocation.getCurrentPosition(function (position) {
+
+
+            var latitude = position.coords.latitude; // широта
+            var longitude = position.coords.longitude; // долгота
+            var accuracy = position.coords.accuracy; // точность
+           // var speed = position.coords.speed; // скорость
+
+            var result = "широта: " + latitude + "\n долгота: " + longitude + "\n точность: " + accuracy
+             //   "\n скорость: " + speed
+             ;
+            d = latitude + ',' + longitude;
+           // speed = +speed;
+
+            $.ajax({
+                type: "POST",
+                url: "http://localhost/Diplom/trace/create",
+                data: "d=" + d,  //"speed=" + speed
+
+                success: function (text) {
+
+
+                },
+                error: function (xhr, status, error) {
+                    alert("Связь потеряна!");
+                }
+
+
+            });
+
+
+        });
+
+        setTimeout(geo,60000);
+    }
+
+
+
+geo();
+
+
+
+
+
+    // alert('тщикарно');
+
+
+</script>
+
+<div class="page-header">
+    <h1 align=center>
+        Связь с оператором
+    </h1>
+
+
+</div>
+
+<p class="red">
+
+    <button type="button" class="btn btn-danger">
+        <?php echo $this->tag->linkTo(array("message/Sos", "Sos ")) ?>
+    </button>
+</p>
+
+
+<p class="green">
+
+    <button type="button" class="btn btn-success">
+        <?php echo $this->tag->linkTo(array("message/new", "Отправить сообщение ")) ?>
+    </button>
+</p>
+
+
+

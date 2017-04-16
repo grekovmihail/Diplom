@@ -16,7 +16,7 @@
 </div>
 
 <div class="page-header">
-    <h1>Все сообщения от КО</h1>
+    <h1>Сообщения от КО</h1>
 </div>
 
 <?php echo $this->getContent(); ?>
@@ -25,11 +25,11 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>IdMessage</th>
-            <th>Текст сообщения </th>
-            <th> Время происшествия</th>
-            <th>  Место</th>
-            <th>Trace Of Auto Of KO</th>
+                <th>КО</th>
+
+            <th>Текст</th>
+            <th>Время отправки</th>
+            <th>Координаты</th>
 
                 <th></th>
                 <th></th>
@@ -38,23 +38,16 @@
         <tbody>
         <?php foreach ($page->items as $message): ?>
             <tr>
-                <td><?php echo $message->idMessage ?></td>
-            <td><?php echo $message->Text ?></td>
+
+                <td><?php echo $message->Trace_Auto_KO ?></td>
+
+
+                <td><?php echo $message->Text ?></td>
             <td><?php echo $message->MessageTime ?></td>
-                <td><?php echo "Место" ?></td>
-            <td>
-
-                <?php echo $this->tag->linkTo(array("auto/edit/" .$message->Trace_Auto_KO , $message->Trace_Auto_KO )); ?>
-
-
-            </td>
-
+            <td><?php echo $message->Trace_idTrace ?></td>
 
                 <td><?php echo $this->tag->linkTo(array("message/edit/" . $message->idMessage, "Edit")); ?></td>
                 <td><?php echo $this->tag->linkTo(array("message/delete/" . $message->idMessage, "Delete")); ?></td>
-
-
-
             </tr>
         <?php endforeach; ?>
         </tbody>
@@ -70,10 +63,10 @@
     <div class="col-sm-11">
         <nav>
             <ul class="pagination">
-                <li><?php echo $this->tag->linkTo("message/ReportAllMessage", "First") ?></li>
-                <li><?php echo $this->tag->linkTo("message/ReportAllMessage?page=" . $page->before, "Previous") ?></li>
-                <li><?php echo $this->tag->linkTo("message/ReportAllMessage?page=" . $page->next, "Next") ?></li>
-                <li><?php echo $this->tag->linkTo("message/ReportAllMessage?page=" . $page->last, "Last") ?></li>
+                <li><?php echo $this->tag->linkTo("message/search", "First") ?></li>
+                <li><?php echo $this->tag->linkTo("message/search?page=" . $page->before, "Previous") ?></li>
+                <li><?php echo $this->tag->linkTo("message/search?page=" . $page->next, "Next") ?></li>
+                <li><?php echo $this->tag->linkTo("message/search?page=" . $page->last, "Last") ?></li>
             </ul>
         </nav>
     </div>

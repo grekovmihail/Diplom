@@ -1,54 +1,26 @@
 <?php
 
-class Trace extends \Phalcon\Mvc\Model
+class Group extends \Phalcon\Mvc\Model
 {
 
     /**
      *
      * @var integer
      */
-    public $idTrace;
-
-    /**
-     *
-     * @var integer
-     */
-    public $Auto_KO;
-
-    /**
-     *
-     * @var integer
-     */
-    public $Coordinate;
+    public $KOGroup;
 
     /**
      *
      * @var string
      */
-    public $Message;
-
-    /**
-     *
-     * @var string
-     */
-    public $Time;
-
-       public $Speed;
-           /**
-     *
-     * @var string
-     */
-
-
-
+    public $GroupName;
 
     /**
      * Initialize method for model.
      */
     public function initialize()
     {
-        $this->hasMany('idTrace', 'Message', 'Trace_idTrace', array('alias' => 'Message'));
-        $this->belongsTo('Auto_KO', 'Auto', 'KO', array('alias' => 'Auto'));
+        $this->hasMany('KOGroup', 'Auto', 'Group_KOGroup', array('alias' => 'Auto'));
     }
 
     /**
@@ -58,14 +30,14 @@ class Trace extends \Phalcon\Mvc\Model
      */
     public function getSource()
     {
-        return 'trace';
+        return 'group';
     }
 
     /**
      * Allows to query a set of records that match the specified conditions
      *
      * @param mixed $parameters
-     * @return Trace[]
+     * @return Group[]
      */
     public static function find($parameters = null)
     {
@@ -76,7 +48,7 @@ class Trace extends \Phalcon\Mvc\Model
      * Allows to query the first record that match the specified conditions
      *
      * @param mixed $parameters
-     * @return Trace
+     * @return Group
      */
     public static function findFirst($parameters = null)
     {

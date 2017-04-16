@@ -1,0 +1,41 @@
+<?php
+/**
+ * @var \Phalcon\Mvc\View\Engine\Php $this
+ */
+?>
+
+<div class="page-header">
+    <h1>
+Сообщения от КО    </h1>
+
+</div>
+
+<?php echo $this->getContent() ?>
+
+<?php
+    echo $this->tag->form(
+        array(
+            "message/ReportMessage",
+            "autocomplete" => "off",
+            "class" => "form-horizontal"
+        )
+    );
+?>
+
+
+
+<div class="form-group">
+    <label for="fieldTraceAutoKo" class="col-sm-2 control-label">Выбор КО</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(array("Trace_Auto_KO", "type" => "number", "class" => "form-control", "id" => "fieldTraceAutoKo")) ?>
+    </div>
+</div>
+
+
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <?php echo $this->tag->submitButton(array("Показать", "class" => "btn btn-default")) ?>
+    </div>
+</div>
+
+<?php echo $this->tag->endForm(); ?>

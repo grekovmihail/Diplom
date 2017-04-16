@@ -17,8 +17,8 @@ class MessageController extends ControllerBase
         $message = new Message();
         $message->Text = "Sos!";
         $message->MessageTime = date("y-m-d  G:i:s");
-        $message->Trace_idTrace = 108;
-        $message->Trace_Auto_KO = 101;
+        $message->Trace_idTrace = 759;
+        $message->Trace_Auto_KO = 102;
 
         if (!$message->save()) {
             foreach ($message->getMessages() as $message) {
@@ -61,6 +61,16 @@ class MessageController extends ControllerBase
 
 
 
+    public function MakeReportMessageAction()
+    {
+        $this->persistent->parameters = null;
+    }
+
+
+
+
+
+
 
     /**
      * Searches for message
@@ -99,6 +109,45 @@ class MessageController extends ControllerBase
 
         $this->view->page = $paginator->getPaginate();
     }
+
+
+
+
+    public function ReportMessageAction()
+    {
+        $numberPage = 1;
+        if ($this->request->isPost()) {
+            $query = Criteria::fromInput($this->di, 'Message', $_POST);
+            $this->persistent->parameters = $query->getParams();
+        } else {
+            $numberPage = $this->request->getQuery("page", "int");
+        }
+
+        $parameters = $this->persistent->parameters;
+        if (!is_array($parameters)) {
+            $parameters = array();
+        }
+        $parameters["order"] = "idMessage";
+
+        $message = Message::find($parameters);
+        if (count($message) == 0) {
+            $this->flash->notice("The search did not find any message");
+
+            return $this->dispatcher->forward(array(
+                "controller" => "message",
+                "action" => "index"
+            ));
+        }
+
+        $paginator = new Paginator(array(
+            "data" => $message,
+            "limit"=> 10,
+            "page" => $numberPage
+        ));
+
+        $this->view->page = $paginator->getPaginate();
+    }
+
 
 
 

@@ -1,0 +1,29 @@
+<?php
+
+$i = 0;
+
+foreach ($page->items as $trace):
+
+
+    $LactCoordinate = array(
+        "idTrace" => $trace->idTrace,
+        "Auto_KO" => $trace->Auto_KO,
+        "Coordinate" => $trace->Coordinate,
+        "Time" => $trace->Time,
+
+    );
+
+
+    $i++;
+endforeach;
+
+echo($trace->Coordinate);
+
+
+
+file_put_contents('last.json', json_encode($LactCoordinate));
+
+
+
+
+?>

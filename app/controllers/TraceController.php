@@ -24,7 +24,9 @@ class TraceController extends ControllerBase
 
 
 
-    public function makeReportAction()
+
+
+    public function makeAction()
     {
         $this->persistent->parameters = null;
 
@@ -33,6 +35,42 @@ class TraceController extends ControllerBase
 
 
     }
+
+
+
+    public function map2Action()
+    {
+        $this->persistent->parameters = null;
+
+
+
+
+
+    }
+
+
+
+
+
+
+    public function makeReportAction()
+    {
+        $this->persistent->parameters = null;
+
+    }
+
+
+    public function makeReportTotalAction()
+    {
+        $this->persistent->parameters = null;
+
+
+
+
+
+    }
+
+
 
 
 
@@ -113,11 +151,148 @@ class TraceController extends ControllerBase
         $paginator = new Paginator(array(
             "data" => $trace,
             "limit"=> 50000,
-            "page" => 1
+            "page" => $numberPage
         ));
 
         $this->view->page = $paginator->getPaginate();
+
+
+
     }
+
+
+
+
+    public function reportTotalAction()
+    {
+        $numberPage = 1;
+        if ($this->request->isPost()) {
+            $query = Criteria::fromInput($this->di, 'Trace', $_POST);
+            $this->persistent->parameters = $query->getParams();
+        } else {
+            $numberPage = $this->request->getQuery("page", "int");
+        }
+
+        $parameters = $this->persistent->parameters;
+        if (!is_array($parameters)) {
+            $parameters = array();
+        }
+        $parameters["order"] = "idTrace";
+
+        $trace = Trace::find($parameters);
+        if (count($trace) == 0) {
+            $this->flash->notice("The search did not find any trace");
+
+            return $this->dispatcher->forward(array(
+                "controller" => "trace",
+                "action" => "index"
+            ));
+        }
+
+        $paginator = new Paginator(array(
+            "data" => $trace,
+            "limit"=> 10,
+            "page" => $numberPage
+        ));
+
+        $this->view->page = $paginator->getPaginate();
+
+
+
+
+    }
+
+
+
+
+    public function reportTotalJSONAction()
+    {
+        $numberPage = 1;
+        if ($this->request->isPost()) {
+            $query = Criteria::fromInput($this->di, 'Trace', $_POST);
+            $this->persistent->parameters = $query->getParams();
+        } else {
+            $numberPage = $this->request->getQuery("page", "int");
+        }
+
+        $parameters = $this->persistent->parameters;
+        if (!is_array($parameters)) {
+            $parameters = array();
+        }
+        $parameters["order"] = "idTrace";
+
+        $trace = Trace::find($parameters);
+        if (count($trace) == 0) {
+            $this->flash->notice("The search did not find any trace");
+
+            return $this->dispatcher->forward(array(
+                "controller" => "trace",
+                "action" => "index"
+            ));
+        }
+
+        $paginator = new Paginator(array(
+            "data" => $trace,
+            "limit"=> 500000,
+            "page" => $numberPage
+        ));
+
+        $this->view->page = $paginator->getPaginate();
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+    public function mapAction()
+    {
+        $numberPage = 1;
+        if ($this->request->isPost()) {
+            $query = Criteria::fromInput($this->di, 'Trace', $_POST);
+            $this->persistent->parameters = $query->getParams();
+        } else {
+            $numberPage = $this->request->getQuery("page", "int");
+        }
+
+        $parameters = $this->persistent->parameters;
+        if (!is_array($parameters)) {
+            $parameters = array();
+        }
+        $parameters["order"] = "idTrace";
+
+        $trace = Trace::find($parameters);
+        if (count($trace) == 0) {
+            $this->flash->notice("The search did not find any trace");
+
+            return $this->dispatcher->forward(array(
+                "controller" => "trace",
+                "action" => "index"
+            ));
+        }
+
+        $paginator = new Paginator(array(
+            "data" => $trace,
+            "limit"=> 10,
+            "page" => $numberPage
+        ));
+
+        $this->view->page = $paginator->getPaginate();
+
+
+
+
+    }
+
+
+
+
 
 
 
@@ -135,7 +310,8 @@ class TraceController extends ControllerBase
         if (!is_array($parameters)) {
             $parameters = array();
         }
-        $parameters["order"] = "idTrace";
+
+        $parameters = "idTrace";
 
         $trace = Trace::find($parameters);
         if (count($trace) == 0) {

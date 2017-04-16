@@ -1,55 +1,31 @@
 <?php
 
-class Trace extends \Phalcon\Mvc\Model
+class Security extends \Phalcon\Mvc\Model
 {
 
     /**
      *
      * @var integer
      */
-    public $idTrace;
-
-    /**
-     *
-     * @var integer
-     */
-    public $Auto_KO;
-
-    /**
-     *
-     * @var integer
-     */
-    public $Coordinate;
+    public $idSecurity;
 
     /**
      *
      * @var string
      */
-    public $Message;
+    public $FIO_Security;
 
     /**
      *
      * @var string
      */
-    public $Time;
+    public $Login;
 
-       public $Speed;
-           /**
+    /**
      *
      * @var string
      */
-
-
-
-
-    /**
-     * Initialize method for model.
-     */
-    public function initialize()
-    {
-        $this->hasMany('idTrace', 'Message', 'Trace_idTrace', array('alias' => 'Message'));
-        $this->belongsTo('Auto_KO', 'Auto', 'KO', array('alias' => 'Auto'));
-    }
+    public $Password;
 
     /**
      * Returns table name mapped in the model.
@@ -58,14 +34,14 @@ class Trace extends \Phalcon\Mvc\Model
      */
     public function getSource()
     {
-        return 'trace';
+        return 'security';
     }
 
     /**
      * Allows to query a set of records that match the specified conditions
      *
      * @param mixed $parameters
-     * @return Trace[]
+     * @return Security[]
      */
     public static function find($parameters = null)
     {
@@ -76,7 +52,7 @@ class Trace extends \Phalcon\Mvc\Model
      * Allows to query the first record that match the specified conditions
      *
      * @param mixed $parameters
-     * @return Trace
+     * @return Security
      */
     public static function findFirst($parameters = null)
     {

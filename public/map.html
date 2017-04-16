@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Примеры. Задание собственного изображения для метки</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- Если вы используете API локально, то в URL ресурса необходимо указывать протокол в стандартном виде (http://...)-->
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+    <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+
+    <script>
+
+
+
+
+
+        $.ajax({
+            url: 'http://localhost/Diplom/trace/ReportTotalJSON',
+            type: 'post'
+
+        });
+
+
+
+        $.getJSON('last.json', function(data) {
+            s  = "";
+            $.each(data, function(key, val) {
+                s = s + key+' => ' + val + '<br/>'
+            });
+            $("#comments").html(s);
+            //data=JSON.parse(data);
+             Coordinates=data.Coordinate;
+
+        });
+
+
+
+
+
+        ymaps.ready(function () {
+
+            console.log(Coordinates);
+
+
+            var foundPos = Coordinates.indexOf(',', 0);
+
+            var x=Coordinates.substring(0,10),
+             y=Coordinates.substring(11);
+            console.log(x);
+            console.log(y);
+
+
+            var myMap = new ymaps.Map('map', {
+                        center: [x,y],
+                        zoom: 9
+                    }, {
+                        searchControlProvider: 'yandex#search'
+                    }),
+                    myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
+                        hintContent: 'КО',
+                        balloonContent: 'КО'
+                    }, {
+                        // Опции.
+                        // Необходимо указать данный тип макета.
+                        iconLayout: 'default#image',
+                        // Своё изображение иконки метки.
+                        iconImageHref: 'KO.png',
+                        // Размеры метки.
+                        iconImageSize: [30, 42],
+                        // Смещение левого верхнего угла иконки относительно
+                        // её "ножки" (точки привязки).
+                        iconImageOffset: [-5, -38]
+                    });
+
+            myMap.geoObjects.add(myPlacemark);
+        });
+
+
+    </script>
+    <style>
+        html, body, #map {
+            width: 90%; height: 90%; padding: 0; margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+
+
+
+
+<div id="map"></div>
+
+
+
+<div id="comments"></div>
+
+
+</body>
+</html>

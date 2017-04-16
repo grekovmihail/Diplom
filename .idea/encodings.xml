@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/app/views/message/MakeReportMessage.phtml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/views/message/ReportAllMessage.phtml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/views/message/ReportMessage.phtml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/views/trace/Map.phtml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/views/trace/Map2.volt" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/views/trace/ReportAllKO.phtml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/views/trace/ReportAllMessage.phtml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/views/trace/ReportTotal.phtml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/views/trace/ReportTotalJSON.phtml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/views/trace/make.phtml" charset="UTF-8" />
   </component>
 </project>

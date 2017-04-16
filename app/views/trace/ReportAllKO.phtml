@@ -37,7 +37,7 @@
             <th>Время в пути</th>
 
 
-            <th>ЧП</th>
+        <!--    <th>ЧП</th> -->
 
         </tr>
         </thead>
@@ -47,43 +47,55 @@
         <?php
         //     $x=0;
         //   print_r ($page->items );
-        echo $page->items[0]->Auto_KO;
-        // foreach ($page->items as $trace):
+       // echo $page->items[0]->Auto_KO;
+        $i=0;
+        $x=0;
+         foreach ($page->items as $trace): //time to bidlocode
         //$x++;
         //      endforeach; //костыль так как коунт хз чо
 
-        $x = count($page->items) - 1;
+        $all = count($page->items) - 1;
 
         //echo $x;
-
-
-        $diff = strtotime($page->items[$x]->Time ) - strtotime($page->items[0]->Time);
+        $x++;
         // считаем время
 
+             //if (($x)==$all)
+            // $x--;//break;
 
-        ?>
-        <tr>
-            <td><?php echo $page->items[0]->Auto_KO ?> </td>
-            <td> <?php echo $page->items[0]->Coordinate ?></td>
-            <td><?php echo $page->items[0]->Time ?></td>
-            <td> <?php echo $page->items[$x]->Coordinate ?></td>
-            <td><?php echo $page->items[$x]->Time ?></td>
-            <td><?php echo round($diff / 86400)."д.,".round(($diff % 86400) / 3600)."ч: ".round(($diff % 3600) / 60). "м:".round($diff % 60)."с"; ?></td>
-            <td><?php
+             if ((($page->items[$i]->Auto_KO)!=($page->items[$x-1]->Auto_KO)) ||(($x-1)==$all) ) {
+                if (($x-1)==$all) $x++;
+            $diff = strtotime($page->items[$x-2]->Time ) - strtotime($page->items[$i]->Time);
+
+            ?>
 
 
-                //  foreach ($page->items[0]->Message as $CHP)
-                for ($i=0;$i<$x;$i++) {
-                    echo $page->items[0]->Message;
-                };
+            <tr>
+                <td><?php echo $page->items[$i]->Auto_KO ?> </td>
+                <td> <?php echo $page->items[$i]->Coordinate ?></td>
+                <td><?php echo $page->items[$i]->Time ?></td>
+                <td> <?php echo $page->items[$x-2]->Coordinate ?></td>
+                <td><?php echo $page->items[$x-2]->Time ?></td>
+                <td><?php echo round($diff / 86400) . "д. " . round(($diff % 86400) / 3600) . "ч  " . round(($diff % 3600) / 60) . "м " . round($diff % 60) . "с"; ?></td>
+                <td><?php
 
-                //echo array_count_values($page->items[0]->Message);
+
+                    //  foreach ($page->items[0]->Message as $CHP)
+                    /*   for ($i=0;$i<$x;$i++) {
+                           echo $page->items[0]->Message;
+                       };
+       */
+                    //echo array_count_values($page->items[0]->Message);
 
 
-                ?></td>
+                    ?></td>
 
-        </tr>
-        <?php //endforeach; ?>
+            </tr>
+            <?php
+        $i=$x-1;
+        }
+
+        endforeach; ?>
         </tbody>
 
 

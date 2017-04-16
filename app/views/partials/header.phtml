@@ -1,57 +1,229 @@
 <!DOCTYPE html>
 <html>
-    <head>
+<head>
+
+    <style>
+.button {
+    margin-left: 90%;
+    margin-right: 0em;
+
+}
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="container">
+                <div class="menu">
+
+
+                    <ul class="nav nav-tabs">
+
+
+                        <li class="dropdown">
+
+                            <a class="dropdown-toggle"
+                               data-toggle="dropdown"
+                               href="group/all">
+                                Группы
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+
+                                <li><a href="{{ url(" group/all") }}"> Все группы  </a></li>
+                                <li><a href="{{ url(" group/search") }}"> Поиск   </a></li>
+                                <li><a href="{{ url(" group/create") }}">Добавить  </a></li>
+                                <li><a href="{{ url(" group/all") }}">Редактировать  </a></li>
+                                <li><a href="{{ url(" group/delete") }}"> Удалить </a>     </li>
+
+
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+
+                            <a class="dropdown-toggle"
+                               data-toggle="dropdown"
+                               href="group/all">
+                                КО
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+
+                                <li><a href="{{ url("auto/all") }}"> Все группы  </a></li>
+                                <li><a href="{{ url("auto/search") }}"> Поиск   </a></li>
+                                <li><a href="{{ url(" auto/create") }}">Добавить  </a></li>
+                                <li><a href="{{ url(" auto/all") }}">Редактировать  </a></li>
+                                <li><a href="{{ url(" auto/delete") }}"> Удалить </a>     </li>
+
+
+                            </ul>
+                        </li>
 
 
 
 
-    </head>
-
-
-
-    <body>
-
-
-        <header>
- 
 
 
 
 
- <div class="navbar">
-  <div class="navbar-inner">
-    <div class="container">
+                        <li class="dropdown">
 
+                            <a class="dropdown-toggle"
+                               data-toggle="dropdown"
+                               href="group/all">
+                                Задание
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
 
-<!--
-
- <ul class="nav nav-tabs">
-        <ul class="nav">
-        <li><a href="{{ url("mail/in") }}">Входящие  </a></li>
-        <li><a href="{{ url("mail/out") }}">Отправленные  </a></li>
-        <li><a href="{{ url("avto/all") }}">Подвезут  </a></li>
-        <li><a href="{{ url("pass/all") }}">Подвезти  </a></li>
-        <li>    <a href="{{ url("/avto/my/") }}"> Мой Профиль</a>     </li>
-  -->
-        <!-- .nav, .navbar-search, .navbar-form, etc -->
-
-            <a class="fa fa-save fa-3x" 0 aria-hidden="true" href="javascript:$('#body').wordExport();"></a>
-            <a class="fa fa-print fa-3x" 0 aria-hidden="true" href="javascript:window.print(); void 0;"></a>
+                                <li><a href="/Diplom/auto/all") }}"> Создать задание </a></li>
+                                <li><a href="/Diplom/auto/search") }}"> Просмотреть задания   </a></li>
+                                <li><a href="/Diplom/trace/MakeReport">Измменить задания  </a></li>
 
 
 
 
 
+                            </ul>
+                        </li>
+
+
+                        <li class="dropdown">
+
+                            <a class="dropdown-toggle"
+                               data-toggle="dropdown"
+                               href="group/all">
+                                Маршруты
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+
+                                <li><a href="/Diplom/auto/all") }}"> Просмотр </a></li>
+                                <li><a href="/Diplom/auto/search") }}"> Создание  </a></li>
+                                <li><a href="/Diplom/trace/MakeReport">Редактирование  </a></li>
+                                <li><a href="/Diplom/trace/MakeReport">Удаление  </a></li>
+
+
+
+
+
+                            </ul>
+                        </li>
+
+
+
+
+                        <li class="dropdown">
+
+                            <a class="dropdown-toggle"
+                               data-toggle="dropdown"
+                               href="group/all">
+                                Информация по КО
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+
+                                <li><a href="/Diplom/trace/map") }}"> Местонахождение   </a></li>
+                                <li><a href="/Diplom/trace/MakeReport">Проделанный путь  </a></li>
+                                <li><a href="/Diplom/trace/MakeReportTotal">Полный отчет по движению  </a></li>
+                                <li><a href="/Diplom/message/MakeReportMessage"> Сообщения  </a>     </li>
+
+
+
+
+                            </ul>
+                        </li>
+
+
+
+                        <li class="dropdown">
+
+                            <a class="dropdown-toggle"
+                               data-toggle="dropdown"
+                               href="group/all">
+                                Отчеты
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+
+
+                                <li><a href="/Diplom/trace/reportAllKO"> Сводный отчет по движению  </a></li>
+                                <li><a href="/Diplom/message/ReportAllMessage"> Сообщения  </a>     </li>
+                                <li><a href="/Diplom/message/ReportAllMessage"> Графический отчет по маршруту в зависимости от типа КО  </a>     </li>
+                                <li><a href="/Diplom/message/ReportAllMessage"> Графический отчет по маршруту в зависимости от времени начала движения </a>     </li>
+
+
+
+                            </ul>
+                        </li>
+
+
+
+
+
+                        <div class="button">
+                            <a class="fa fa-save fa-3x" 0 aria-hidden="true"
+                               href="javascript:$('#body').wordExport();"></a>
+                            <a class="fa fa-print fa-3x" 0 aria-hidden="true"
+                               href="javascript:window.print(); void 0;"></a>
+                        </div>
+
+
+                    </ul>
+
+
+                    <!--
+
+                                    <li class="dropdown">
+
+                                        <a class="dropdown-toggle"
+                                           data-toggle="dropdown"
+                                           href="#">
+                                            Dropdown
+                                            <b class="caret"></b>
+                                        </a>
+                                        <ul class="dropdown-menu">
+
+                                        </ul>
+                                    </li>
+                                </ul>
+                    -->
+
+                </div>
+
+
+                <!--
+
+                 <ul class="nav nav-tabs">
+                        <ul class="nav">
+                        <li><a href="{{ url("mail/in") }}">Входящие  </a></li>
+                        <li><a href="{{ url("mail/out") }}">Отправленные  </a></li>
+                        <li><a href="{{ url("avto/all") }}">Подвезут  </a></li>
+                        <li><a href="{{ url("pass/all") }}">Подвезти  </a></li>
+                        <li>    <a href="{{ url("/avto/my/") }}"> Мой Профиль</a>     </li>
+                  -->
+                <!-- .nav, .navbar-search, .navbar-form, etc -->
+
+
+            </div>
+
+        </div>
     </div>
- 
     </div>
-  </div>
-</div>
 
 
-
-            <!-- end navigation-block -->
-        </header>
+    <!-- end navigation-block -->
+</header>
 
 
 

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Примеры. Задание собственного изображения для метки</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!-- Если вы используете API локально, то в URL ресурса необходимо указывать протокол в стандартном виде (http://...)-->
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+    <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+
+    <script>
+
+
+        function timer(i){
+
+            map(Coordinates[i],Times[i]);
+            i++;
+            if (i<x)
+            setTimeout(timer, 15000);
+
+
+        }
+
+        function map(Coordinates,Times) {
+            ymaps.ready
+
+
+            (function () {
+
+                        $("#map").html('');
+
+                        //alert(Coordinates);
+
+
+                        var foundPos = Coordinates.indexOf(',', 0);
+                        var x = Coordinates.substring(0, foundPos),
+                                y = Coordinates.substring(foundPos + 1);
+                  //      console.log(x);
+                   //     console.log(y);
+
+                        $("#Time").html(Times);
+                        $("#xy").html(Coordinates);
+
+                        var myMap = new ymaps.Map('map', {
+                                    center: [x, y],
+                                    zoom: 13
+                                }, {
+                                    searchControlProvider: 'yandex#search'
+                                }),
+                                myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
+                                    hintContent: 'КО',
+                                    balloonContent: 'КО'
+                                }, {
+                                    // Опции.
+                                    // Необходимо указать данный тип макета.
+                                    iconLayout: 'default#image',
+                                    // Своё изображение иконки метки.
+                                    iconImageHref: 'KO.png',
+                                    // Размеры метки.
+                                    iconImageSize: [30, 42],
+                                    // Смещение левого верхнего угла иконки относительно
+                                    // её "ножки" (точки привязки).
+                                    iconImageOffset: [-5, -38]
+                                });
+
+                        myMap.geoObjects.add(myPlacemark);
+                    }
+            );
+
+        }
+
+
+
+            function apply() {
+
+                $.ajax({
+                    url: 'http://localhost/Diplom/trace/ReportTotalJSONtime',
+                    // datatype:'json',
+                    type: 'post',
+                    // success:callback
+                });
+
+
+                KO = document.getElementById('KO').value;
+                KO = +KO;
+                $.getJSON('time.json', function (data) {
+
+
+                    x=0;
+                    Coordinates=[];
+                    Times=[];
+
+
+                    /*        s  = "";
+                     $.each(data, function(key, val) {
+                     s = s + key+' => ' + val + '<br/>'
+                     });*/
+                    //   $("#comments").html(s);
+                    //    data=JSON.parse(data);
+                    /*    Coordinates=data.Coordinate;
+                     $("#comments").html(Coordinates);*/
+
+                    /*      for (var key in data) {
+                     // этот код будет вызван для каждого свойства объекта
+                     // ..и выведет имя свойства и его значение
+
+                     console.log( "Ключ: " + key + " значение: " + data[key] );
+                     }
+
+                     */
+
+                    for (var i = 0; i < data.length; i++) {
+
+                        for (var key in data[i]) {
+                          //  console.log("Ключ: " + key + " значение: " + data[i][key]);
+                            if (data[i].Auto_KO == KO) {
+                                Coordinates[x] = data[i].Coordinate; // ывлд в поле и забирать от туда
+                                Times[x]=data[i].Time;
+                                console.log(Coordinates[x]);
+                                x++;
+                            }
+                        }
+                    }
+
+
+
+                    success:
+
+                        //  map(Coordinates[0]);
+                          var  i=0;
+                    timer(i);
+
+
+                         //   for(i=0;i<5;i++) {
+                           //     setTimeout(map(Coordinates[i],Times[i]), 15000)
+
+                        //    }
+
+                });
+
+
+            }
+
+        //settime бла бла бла функцию эту
+    </script>
+    <style>
+        html, body {
+            width: 90%;
+            height: 90%;
+            padding: 0;
+            margin: 0;
+        }
+
+        #map {
+            width: 90%;
+            height: 90%;
+            padding: 0;
+            margin: 0;
+        }
+
+    </style>
+</head>
+<body>
+
+
+<div id="map"></div>
+
+
+<div id="KOn">
+    KO:
+    <select name="KO" id="KO">
+        <option value="101">101</option>
+        <option value="103">103</option>
+        <option selected value="102">102</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+    </select>
+
+</div>
+
+<input type="button" value="Построить отчет" class="green" onclick="apply();">
+
+
+<div id="xy"></div>
+<div id="Time"></div>
+
+
+
+</body>
+</html>

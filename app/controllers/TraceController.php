@@ -71,6 +71,31 @@ class TraceController extends ControllerBase
     }
 
 
+    public function GrafKOAction()
+    {
+        $this->persistent->parameters = null;
+
+
+
+
+
+    }
+
+
+
+    public function GrafTimeAction()
+    {
+        $this->persistent->parameters = null;
+
+
+
+
+
+    }
+
+
+
+
 
 
 
@@ -243,6 +268,49 @@ class TraceController extends ControllerBase
 
 
     }
+
+
+
+
+    public function reportTotalJSONtimeAction()
+    {
+        $numberPage = 1;
+        if ($this->request->isPost()) {
+            $query = Criteria::fromInput($this->di, 'Trace', $_POST);
+            $this->persistent->parameters = $query->getParams();
+        } else {
+            $numberPage = $this->request->getQuery("page", "int");
+        }
+
+        $parameters = $this->persistent->parameters;
+        if (!is_array($parameters)) {
+            $parameters = array();
+        }
+        $parameters["order"] = "idTrace";
+
+        $trace = Trace::find($parameters);
+        if (count($trace) == 0) {
+            $this->flash->notice("The search did not find any trace");
+
+            return $this->dispatcher->forward(array(
+                "controller" => "trace",
+                "action" => "index"
+            ));
+        }
+
+        $paginator = new Paginator(array(
+            "data" => $trace,
+            "limit"=> 500000,
+            "page" => $numberPage
+        ));
+
+        $this->view->page = $paginator->getPaginate();
+
+
+
+
+    }
+
 
 
 

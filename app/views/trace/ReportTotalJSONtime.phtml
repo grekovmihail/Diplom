@@ -5,13 +5,14 @@ $i = 0;
 foreach ($page->items as $trace):
 
 
-    $LactCoordinate = array(
+    $Coordinate[$i] = array(
         "idTrace" => $trace->idTrace,
         "Auto_KO" => $trace->Auto_KO,
         "Coordinate" => $trace->Coordinate,
         "Time" => $trace->Time,
         "Speed" => $trace->Speed,
         "Route" => $trace->Route,
+
     );
 
 
@@ -22,7 +23,7 @@ echo($trace->Coordinate);
 
 
 
-file_put_contents('last.json', json_encode($LactCoordinate));
+file_put_contents('time.json', json_encode($Coordinate));
 
 
 

@@ -15,14 +15,19 @@
 
         $.ajax({
             url: 'http://localhost/Diplom/trace/ReportTotalJSONtime',
-            type: 'post'
-
+           // datatype:'json',
+            type: 'post',
+           // success:callback
         });
 
 
         KO = document.getElementById('KO').value;
 KO=+KO;
-    $.getJSON('time.json', function (data) {
+ $.getJSON('time.json', function (data) {
+
+                          $("#map").html('');
+
+
             /*        s  = "";
             $.each(data, function(key, val) {
                 s = s + key+' => ' + val + '<br/>'
@@ -43,27 +48,27 @@ KO=+KO;
 
             for (var i = 0; i < data.length; i++) {
 
-                for (var key in data[i]) {console.log( "Ключ: " + key + " значение: " + data[i][key] );
+                for (var key in data[i]) {
+                    console.log( "Ключ: " + key + " значение: " + data[i][key] );
+                    if (data[i].Auto_KO==KO) {
+                        Coordinates=data[i].Coordinate; // ывлд в поле и забирать от туда
+                         $("#comments").html(data[i].Time);
 
-                    if (data[i].Auto_KO==KO)
-                        window.Coordinates=data[i].Coordinate; // ывлд в поле и забирать от туда
-                }
+                          }
+              }
             }
 
+                       alert(Coordinates);
 
-        });
-
-
-
-        alert(Coordinates);
+           success:
 
 
-        ymaps.ready
+           ymaps.ready
 
 
-        (function (Coordinates) {
+        (function () {
 
-            console.log(Coordinates);
+            alert(Coordinates);
 
 
             var foundPos = Coordinates.indexOf(',', 0);
@@ -99,21 +104,32 @@ KO=+KO;
         }
         );
 
-}
+
+
+
+        });
+
+
+
+
+
+
+        }
+
+          //settime бла бла бла функцию эту
     </script>
     <style>
-        html, body, #map {
+        html, body {
             width: 90%; height: 90%; padding: 0; margin: 0;
         }
+
+        #map {
+            width: 90%; height: 90%; padding: 0; margin: 0;
+        }
+
     </style>
 </head>
 <body>
-
-
-
-
-
-<div id="map"></div>
 
 
 <div id="KOn">
@@ -134,6 +150,12 @@ KO=+KO;
     </select>
 
 </div>
+
+
+<div id="map"></div>
+
+
+
 
 <input type="button" value="Построить отчет" class="green" onclick="apply();">
 
